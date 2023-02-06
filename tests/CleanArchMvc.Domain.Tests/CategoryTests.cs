@@ -16,6 +16,18 @@ public class CategoryTests
         action
             .Should()
             .NotThrow<DomainExceptionValidation>();
+    }
 
+    [Theory]
+    [InlineData(-1, "category name")]
+    [InlineData(1, "")]
+    [InlineData(1, null)]
+    public void CreateCategory_WithInvalidParameters_ThrowsException(int id, string name)
+    {
+        Action action = () => new Category(id, name);
+
+        action
+            .Should()
+            .Throw<DomainExceptionValidation>();
     }
 }
