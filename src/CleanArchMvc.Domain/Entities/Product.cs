@@ -38,6 +38,7 @@ public sealed class Product : Entity
         DomainExceptionValidation.When(price < 0, "Price cannot be negative");
         DomainExceptionValidation.When(stock < 0, "Stock cannot be negative");
         DomainExceptionValidation.When(image == "", "Image cannot be empty");
+        DomainExceptionValidation.When(image?.Length > 250, "Invalid image name, too long, maximum 250 characters");
     }
     public string Name { get; private set; }
     public string Description { get; private set; }
