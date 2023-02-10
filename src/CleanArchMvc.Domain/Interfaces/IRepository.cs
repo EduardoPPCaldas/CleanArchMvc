@@ -1,16 +1,18 @@
+using System.Linq.Expressions;
+
 namespace CleanArchMvc.Domain.Interfaces;
 
-public interface IRepository<T>
+public interface IRepository<TEntity>
 {
-    Task<List<T>> Get();
+    Task<List<TEntity>> Get();
 
-    Task<List<T>> Get(Func<T, bool> pred);
+    Task<List<TEntity>> Get(Expression<Func<TEntity, bool>> pred);
 
-    Task<T> GetById(int id);
+    Task<TEntity> GetById(int id);
 
-    Task<T> Create(T entity);
+    Task<TEntity> Create(TEntity entity);
 
-    Task<T> Update(T entity);
+    Task<TEntity> Update(TEntity entity);
 
-    bool Delete(int id);
+    Task Delete(int id);
 }
